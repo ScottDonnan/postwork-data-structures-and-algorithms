@@ -15,7 +15,7 @@ function findFirstDuplicate(arr) {
 if (require.main === module) {
   // add your own tests in here
   console.log("Expecting: 3");
-  console.log(findFirstDuplicate([2, 1, 3, 3, 2]));
+  console.log(findFirstDuplicate([2, 2, 3, 3]));
 
   console.log("");
 

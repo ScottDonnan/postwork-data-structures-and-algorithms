@@ -7,6 +7,7 @@ def find_first_duplicate(arr)
     return value if uniques.include?(value)
 
     uniques.add(value)
+    
   end
 
   -1
