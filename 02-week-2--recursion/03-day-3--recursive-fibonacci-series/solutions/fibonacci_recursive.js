@@ -13,8 +13,8 @@ if (require.main === module) {
 
   console.log("");
 
-  console.log("Expecting: 1");
-  console.log(fibonacci(2));
+  console.log("Expecting: 2");
+  console.log(fibonacci(3));
 
   console.log("");
 
