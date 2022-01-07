@@ -1,5 +1,13 @@
 function rotateArray(arr, k) {
-  // type your code here
+  if (arr.length === 0) {
+    return arr
+  }
+  for (i=0; i<k; i++) {
+    let lastValue = arr.pop()
+    arr.unshift(lastValue)
+  }
+
+  return arr
 }
 
 if (require.main === module) {
@@ -10,12 +18,12 @@ if (require.main === module) {
   console.log("");
 
   console.log("Expecting: [2, 3, 1]");
-  console.log("=>", rotateArray([1, 2, 3], 2));
+  console.log("=>", rotateArray([], 2));
 
   console.log("");
 
   console.log("Expecting: [1, 2, 3]");
-  console.log("=>", rotateArray([1, 2, 3], 3));
+  console.log("=>", rotateArray([1, 2, 3], 21));
 }
 
 module.exports = rotateArray;
