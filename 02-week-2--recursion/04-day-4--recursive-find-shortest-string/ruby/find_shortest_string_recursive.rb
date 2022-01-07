@@ -1,5 +1,10 @@
 def find_shortest_string_recursive(arr)
-  # type your code in here
+  
+  
+  return arr[0] if arr[0].length < arr[1].length
+
+  return find_shortest_string_recursive(arr.slice(1, arr.length))
+
 end
 
 if __FILE__ == $PROGRAM_NAME
@@ -14,7 +19,7 @@ if __FILE__ == $PROGRAM_NAME
   puts
 
   puts "Expecting: 'lily'"
-  puts "=>", find_shortest_string_recursive(['flower', 'juniper', 'lily', 'dandelion'])
+  puts "=>", find_shortest_string_recursive(['flower', 'juniper', 'lily', 'dandelion', 'baby'])
 
   # Don't forget to add your own!
 end

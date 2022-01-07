@@ -4,7 +4,7 @@ function findShortestStringRecursive(arr) {
   }
 
   const result = findShortestStringRecursive(arr.slice(1));
-
+  console.log(result)
   return arr[0].length <= result.length ? arr[0] : result;
 }
 

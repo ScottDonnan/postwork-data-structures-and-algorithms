@@ -1,8 +1,8 @@
 def find_shortest_string_recursive(arr)
   return arr.first if arr.length == 1
-
+  
   result = find_shortest_string_recursive(arr[1..-1])
-
+  
   arr.first.length <= result.length ? arr.first : result
 end
 
