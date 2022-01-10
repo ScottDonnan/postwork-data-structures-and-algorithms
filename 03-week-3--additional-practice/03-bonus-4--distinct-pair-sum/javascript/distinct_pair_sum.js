@@ -1,5 +1,20 @@
 function distinctPairSum(arr, k) {
-  // type your code here
+  let pairs = {}
+  let newArray = []
+
+  if (arr.length === 0) {
+    return pairs
+  }
+
+  for (i=0; i<arr.length; i++) {
+    if (arr[i] + arr[i+1] === k && 
+        pairs[arr[i]] === undefined &&
+        pairs[arr[i+1]] === undefined) {
+          pairs[arr[i]] = [arr[i], arr[i+1]]
+    }
+  }
+
+  return Object.values(pairs)
 }
 
 if (require.main === module) {
@@ -16,4 +31,5 @@ if (require.main === module) {
 module.exports = distinctPairSum;
 
 // Please add your pseudocode to this file
+  //
 // And a written explanation of your solution
