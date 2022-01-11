@@ -9,6 +9,11 @@ class Stack {
   // add item to top of stack if not full
   // if full throw error
   push(item) {
+    if(this.stack.length < this.limit) {
+      this.stack.push(item)
+    } else {
+      throw new Error("Error: stack full")
+    }
 
   }
 
@@ -34,7 +39,7 @@ class Stack {
 
   // return number of items in stack
   size() {
-
+    return this.stack.length
   }
 
   // return -1 if item not in stack, otherwise integer representing 
@@ -50,7 +55,16 @@ class Stack {
 }
 
 if (require.main === module) {
-  // add your own tests in here
+  const stack1 = new Stack();
+  console.log(stack1)
+  
+  for(i=0; i<8; i++) {
+    stack1.push(i)
+  }
+
+  console.log("push", stack1)
+  console.log("size", stack1.size())
+  
 }
 
 module.exports = Stack;
