@@ -52,7 +52,13 @@ module.exports = romanNumeral;
     //   add character value to summing variable
     //     if character + 1 is greater than previous character subtract
     //     two characters before adding to sum variable
-
     // return sum variable
   
 // And a written explanation of your solution
+  /*I created an object that contains all the base values of
+  *roman numeral letters and numbers. Then I looped through 
+  *the given string comparing each letter to it's numeric value
+  *and summing them all together.  If a character in the string 
+  was followed by a character of larger value the first was subtracted
+  from the second and added to the total instead of each of those 
+  characters individually.
