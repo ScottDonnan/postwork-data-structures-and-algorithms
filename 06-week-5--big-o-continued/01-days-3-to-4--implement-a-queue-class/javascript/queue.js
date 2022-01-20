@@ -37,7 +37,11 @@ class Queue {
 
   // return true if queue is full, otherwise false
   isFull() {
-
+    if (this.size() >= this.limit) {
+      return true
+    } else {
+      return false
+    }
   }
 
   // return number of items in queue
@@ -52,7 +56,20 @@ class Queue {
   // return -1 if item not in queue, otherwise integer representing 
   // how far it is from the front
   search(target) {
-
+    const last = this.size() - 1
+    const missing = -1
+    if (this.queue.includes(target)) {
+      return this.queue.indexOf(target)
+    } else {
+      return missing
+    }
+    // for(let i = 0; i <= last; i++) {
+    //   if(this.queue[i] === target) {
+    //     return i
+    //   } else {
+    //     return missing
+    //   }
+    // }
   }
 
   // print contents of queue: do not return the queue itself!
@@ -75,6 +92,16 @@ if (require.main === module) {
   console.log("dequeue", testQueue.dequeue())
   console.log("dequeue", testQueue.dequeue())
   console.log(testQueue.queue)
+
+  console.log('')
+
+  console.log(testQueue.isFull())
+
+  console.log('')
+
+  console.log(testQueue.search(4))
+  console.log(testQueue.search(34))
+  console.log(testQueue.search(9))
 
 
 }
