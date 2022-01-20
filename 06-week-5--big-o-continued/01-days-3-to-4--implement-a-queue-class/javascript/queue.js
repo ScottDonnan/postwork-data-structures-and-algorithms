@@ -10,7 +10,7 @@ class Queue {
   // if full throw error
   enqueue(item) {
     if(this.queue.length >= this.limit) {
-      throw "error: Queue is full."
+      throw new Error('queue full')
     } else {
       this.queue.push(item)
     }
@@ -23,7 +23,7 @@ class Queue {
 
   // return item at front of queue without removing it
   peek() {
-
+    return this.queue[0]
   }
 
   // return true if queue is empty, otherwise false
@@ -56,25 +56,21 @@ class Queue {
   // return -1 if item not in queue, otherwise integer representing 
   // how far it is from the front
   search(target) {
-    const last = this.size() - 1
     const missing = -1
     if (this.queue.includes(target)) {
       return this.queue.indexOf(target)
     } else {
       return missing
     }
-    // for(let i = 0; i <= last; i++) {
-    //   if(this.queue[i] === target) {
-    //     return i
-    //   } else {
-    //     return missing
-    //   }
-    // }
   }
 
   // print contents of queue: do not return the queue itself!
   print() {
-    
+    let queueContent = '';
+    this.queue.forEach(value => {
+      queueContent += value + ','
+    })
+    return queueContent
   }
 }
 
@@ -84,7 +80,7 @@ if (require.main === module) {
   console.log("is Empty", testQueue.isEmpty())
   console.log("size", testQueue.size())
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 9; i++) {
     testQueue.enqueue(i)
   }
   console.log("added numbers", testQueue)
@@ -102,6 +98,10 @@ if (require.main === module) {
   console.log(testQueue.search(4))
   console.log(testQueue.search(34))
   console.log(testQueue.search(9))
+
+  console.log('')
+
+  console.log(testQueue.print())
 
 
 }
