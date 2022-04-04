@@ -1,14 +1,23 @@
+class Node {
+  constructor(value = null, next = null) {
+    this.value = value;
+    this.next = next;
+  }
+}
+
 class LinkedList {
   constructor(head = null) {
     this.head = head
   }
 
-  iterate(another) {
-    let start = this.head
+  iterate(callback) {
+    let node = this.head;
+    let idx = 0;
 
-    while (start !== null) {
-      another(start)
-      start = start.next
+    while (node !== null) {
+      callback(node, idx);
+      idx++;
+      node = node.next;
     }
 
     return this.head
@@ -17,26 +26,20 @@ class LinkedList {
   // print each node's value on its own line
   // use your iterate method to be DRY! Don't get caught in the code rain, brrr.
   print() {
-    // function printNode(node){
-    //   console.log(node.value)
-    // }
-    
     this.iterate(printNode => console.log(printNode.value))
   }
 
   // find the node with the target value and return it
   // if not found return null, use your iterate method to be DRY!
   find(target) {
-    //iterate through each value and check if it equals the target
-    let findNode = null
+    let holder = null;
     this.iterate(firstNode => {
       if (firstNode.value === target) {
-        findNode = firstNode
+        holder = firstNode
       }
     })
 
-    return findNode;
-
+    return holder;
   }
 
   // add the node to the start of the list, no nodes should be removed
@@ -48,48 +51,102 @@ class LinkedList {
   // add node to end of list, no nodes should be removed
   // you may wish to use the iterate method
   addLast(node) {
-    let last
-    this.iterate(currentNode => {
-      if (currentNode.next === null) {
-        last = currentNode
-      }
-    })
+    
+    if(!this.head) {
+      this.head = node;
+    } else {
+      let last;
+      this.iterate(currentNode => {
+        if (currentNode.next === null) {
+          last = currentNode
+        }
+      })
     last.next = node
+    }
   }
 
   // remove the first Node in the list and update head
   // and return the removed node
   removeFirst() {
-
+    let removed = this.head;
+    if(this.head) {
+      this.head = this.head.next
+      return removed;
+    }
   }
 
   // remove the tail node, iterate may be helpful
   // return the node you just removed
   removeLast() {
+    let tail;
+    this.iterate(node => {
+      if (!node.next.next) {
+        tail = node.next;
+        node.next = null;
+      }
+    })
 
+    return tail;
   }
 
   // replace the node at the given index with the given node
   replace(idx, node) {
+    
+    if(idx === 0) {
+      node.next = this.head.next;
+      this.head = node;
+    }
 
+    this.iterate((node1, counter) => {
+      if(counter === idx - 1) {
+        node.next = node1.next ? node1.next.next : null;
+        node1.next = node;
+      }
+    })
+    return node;
   }
 
   // insert the node at the given index
   // no existing nodes should be removed or replaced
   insert(idx, node) {
-
+    if(idx === 0) {
+      node.next = this.head;
+      this.head = node;
+      return this;
+    }
+    
+    this.iterate((left, counter) => {
+      if(counter === idx - 1) {
+        node.next = left.next;
+        left.next = node;
+      }
+    })
+    return this;
   }
 
   // remove the node at the given index, and return it
   remove(idx) {
+    
+    let removed;
+    if(idx === 0) {
+      let removed = this.head;
+      this.head = this.head.next;
+      return removed;
+    }
+    
+    this.iterate((node, counter) => {
+      if (counter === idx - 1) {
+        removed = node.next;
+        node.next = node.next.next;
+      }
+    })
 
+    return removed;
   }
-}
 
-class Node {
-  constructor(value = null, next = null) {
-    this.value = value;
-    this.next = next
+  //empties the list
+  clear() {
+    this.head = null;
   }
 }
 
@@ -99,32 +156,31 @@ if (require.main === module) {
   // const list = new LinkedList(node)
   // const drinks = new Node('coffee', new Node('manhattan', new Node('brandy sour')))
   // const drinkList = new LinkedList(drinks)
-  const head = new Node('hi again', new Node('but why?'))
+  const head = new Node('scott', new Node('clayton', new Node('donnan')))
   const list = new LinkedList(head)
-  // console.log(node)
-  // console.log(node.value)
-  // console.log(node.next)
+  const empty = new LinkedList();
 
-  // console.log('')
+  console.log(list)
+  console.log(' ')
 
-  // console.log("list head =>", list.head)
-  // console.log(list.head.value)
-  // console.log(list.head.next.next.value)
+  console.log(list.print());
+  console.log(' ')
 
-  // console.log("drink list head =>", drinkList.head)
-  // console.log("drinks =>", drinkList.head.next.next)
-    // console.log(list.head.next.value)
-    // console.log(list.iterate())
-    // console.log(list.print())
-    // console.log(list.find("hi again"))
-    // console.log(list.find("but why?"))
-    // console.log(list.find("test"))
-    // console.log(list.find(456))
+  console.log(list.find('scott'))
+  console.log(' ')
 
-    console.log("addFirst =>", list.addFirst(new Node('I am first now')))
-    console.log("print =>", list.print())
-    console.log("addLast =>", list.addLast(new Node('I am last now')))
-    console.log("print =>", list.print())
+  console.log(list.replace(0, new Node('jack')))
+  console.log(list.insert(0, new Node('Scott')))
+  console.log('')
+
+  console.log(empty.addLast(new Node('test')))
+  console.log(empty)
+  console.log('');
+
+  console.log(list)
+  console.log(list.remove(0))
+  console.log(list.remove(1))
+  console.log(list);
 
 
 }
