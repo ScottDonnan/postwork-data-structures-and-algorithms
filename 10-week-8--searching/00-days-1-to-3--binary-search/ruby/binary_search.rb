@@ -1,5 +1,20 @@
 def binary_search(arr, target)
   # type your code in here
+  return false if arr.empty?
+
+  middle = arr.length / 2;
+  middle_value = arr[middle];
+
+  puts arr, middle, middle_value
+
+  return true if middle_value == target;
+
+  if middle_value > target
+    return binary_search(arr[0...middle], target)
+  else
+    return binary_search(arr[middle+1..-1], target)
+  end
+
 end
 
 # BONUS: MODIFY YOUR CODE TO RETURN THE INDEX OF THE TARGET, -1 IF NOT FOUND

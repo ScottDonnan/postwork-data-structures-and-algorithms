@@ -73,16 +73,22 @@ Let's try something different today. Below you'll find pseudocode for binary sea
 ```
 function binary_search(array, target):
   return false if array is empty
+  return false if array.empty?;
 
   initialize integer variable middle with middle index of input array
+  middle = array.length / 2;
   initialize integer variable middle_value with middle value from array
+  middle_value = array[middle];
 
   return true if middle_value == target
+  return true if middle_value == target;
 
   if middle_value > target:
     return binary_search(left half of input, target)
+    return binary_search(array[0...middle], target)
   else:
     return binary_search(right half of input, target)
+    return binary_search(array[middle..-1])
 ```
 
 And here are some test cases to consider:
