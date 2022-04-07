@@ -59,11 +59,7 @@ class MySet {
   // return data as an array
   // don't worry about arrays here!
   entries() {
-    let result = [];
-    for (let key in this.data) {
-      result.push(key)
-    }
-    return result;
+    return Object.keys(this.data)
   }
 }
 

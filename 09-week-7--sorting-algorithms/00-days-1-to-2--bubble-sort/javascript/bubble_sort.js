@@ -1,5 +1,19 @@
 function bubbleSort(arr) {
   // type your code here
+
+  for (let j = 0; j < arr.length; j++){
+
+    for (let i = 0; i < arr.length - i; i++) {
+      if (arr[i] > arr[i+1]) {
+        let second = arr[i+1];
+        arr[i + 1] = arr[i];
+        arr[i] = second;
+      }
+    }
+  
+  }
+
+  return arr;
 }
 
 if (require.main === module) {
