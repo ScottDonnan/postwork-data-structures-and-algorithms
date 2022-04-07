@@ -1,5 +1,24 @@
 def bubble_sort(arr)
   # type your code in here
+  sorted = false
+
+  while(!sorted)
+    sorted = true
+
+    arr.each_index do |idx|
+      break if idx == arr.length - 1
+      
+      if arr[idx] > arr[idx + 1]
+        second = arr[idx + 1]
+        arr[idx + 1] = arr[idx]
+        arr[idx] = second
+        sorted = false
+      end
+
+    end
+  end
+
+  arr
 end
 
 if __FILE__ == $PROGRAM_NAME
