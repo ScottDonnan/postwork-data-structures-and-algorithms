@@ -10,12 +10,50 @@ end
 
 def level_order_traversal(root)
   # type your code in here
+  storage = [];
+  result = [root.value];
+
+  if root.left
+    storage.push root.left
+  end
+  
+  if root.right
+    storage.push root.right
+  end
+
+  
+  while storage.length > 0
+    #take out first value of storage = node;
+    #add its left and right nodes to storage if not nil
+    #push value of node to result
+
+    node = storage.shift
+
+    if node.left
+      storage.push node.left
+    end
+    
+    if node.right
+      storage.push node.right
+    end
+
+    result.push node.value
+  end
+
+  result;
 end
 
 if __FILE__ == $PROGRAM_NAME
   root = Node.new(1, Node.new(2), Node.new(3));
 
   puts "Expecting: [[1], [2, 3]]"
+  print level_order_traversal(root)
+
+  puts
+  puts
+
+  root = Node.new(1, Node.new(0, Node.new(3), Node.new(4)), Node.new(2, Node.new(5), Node.new(6)))
+  puts "Expecting: [[1], [0,2], [3,4,5,6]"
   print level_order_traversal(root)
 
   puts
